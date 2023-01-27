@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: media-wiki-demo
+  name: media-wiki-demo
+  namespace: media-wiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: mediawiki
+  template:
+    metadata:
+      labels:
+        service: media-wiki-service
+    spec:
+      containers:
+      - image: mediawiki
+        imagePullPolicy: Always
+        name: mediawiki
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null

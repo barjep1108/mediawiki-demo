@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: media-wiki-service
+  name: media-wiki-service
+  namespace: media-wiki
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "8000"
+    port: 8000
+    targetPort: 80
+  selector:
+    service: media-wiki-demo
